@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Customisation from './pages/Customisation'
 
 function App() {
   return (
-    <>
-      <h1 className='underline'>Hello there</h1>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/customisation" element={<Customisation />} />
+    </Routes>
   )
 }
 

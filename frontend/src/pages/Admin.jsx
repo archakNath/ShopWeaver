@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { databases } from '../appwrite/config';
+import React, { useEffect, useState } from "react";
+import { databases } from "../appwrite/config";
 
 const Home = () => {
   const [customisation, setCustomisation] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   useEffect(() => {
     init();
@@ -24,15 +24,17 @@ const Home = () => {
       setLoading(false);
     }
   };
-  console.log(import.meta.env.VITE_PROJECT_ID)
+  console.log(import.meta.env.VITE_PROJECT_ID);
   return (
     <div>
+      
       <h2>Customisation List</h2>
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
-      {!loading && customisation.map(custom => (
-        <div key={custom.$id}>{custom.body}</div>
-      ))}
+      {!loading &&
+        customisation.map((custom) => (
+          <div key={custom.$id}>{custom.body}</div>
+        ))}
     </div>
   );
 };

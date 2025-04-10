@@ -1,4 +1,6 @@
 import React from 'react'
+import Sidebar from '../components/sidebar';
+import Preview from '../components/preview';
 
 function Customisation() {
   const options = [
@@ -13,9 +15,9 @@ function Customisation() {
   };
 
   return(
-    <div className='flex flex-col items-center justify-center h-screen'>
-    <button onClick={handleChange} className='bg-blue-500 text-white px-3 py-2 rounded-xl cursor-pointer'>Change</button>
-    {options[customisation]}
+    <div className="flex">
+    <Sidebar/>
+    <Preview/>
     </div>
   );
 }

@@ -1,13 +1,15 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
+import Admin from './pages/Admin'
 import Customisation from './pages/Customisation'
+import Landing from './pages/Landing'
 
 function App() {
   return (
     <Routes>
-      <Route path="/Home" element={<Home />} />
-      <Route path="/customisation" element={<Customisation />} />
+      <Route path="/" element={<Landing/>} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/admin/appearance/customisation" element={<Customisation />} />
     </Routes>
   )
 }

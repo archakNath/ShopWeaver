@@ -6,7 +6,7 @@ import Customisation from './pages/Customisation'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/Home" element={<Home />} />
       <Route path="/customisation" element={<Customisation />} />
     </Routes>
   )

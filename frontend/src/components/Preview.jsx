@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+} from "react-beautiful-dnd";
 
 function Preview() {
-  const section_list = [
+  const [sections, setSections] = useState([
     {
       name: "Header",
       code: (
@@ -27,7 +32,7 @@ function Preview() {
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          className="text-white flex justify-center items-center p-10 "
+          className="text-white flex justify-center items-center p-10"
         >
           <div className="container flex justify-between items-center">
             <div className="flex flex-col gap-5">
@@ -47,27 +52,62 @@ function Preview() {
         </main>
       ),
     },
-    
-  ];
+  ]);
+
+  const handleDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const reordered = Array.from(sections);
+    const [movedItem] = reordered.splice(result.source.index, 1);
+    reordered.splice(result.destination.index, 0, movedItem);
+
+    setSections(reordered);
+  };
+
   return (
     <div className="p-5 w-full bg-stone-100 max-[400px]:w-full">
       <h2 className="text-2xl font-bold mb-3">Preview</h2>
       <div id="sections-preview" className="w-full bg-white rounded-xl p-2">
-        {section_list.map((section, index) => (
-          <React.Fragment key={index}>
-            <div>
-              <p className="text-sm text-gray-400">{section.name}</p>
-              <div className="border-1 overflow-hidden border-dashed rounded-xl">
-                {section.code}
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="sections">
+            {(provided) => (
+              <div ref={provided.innerRef} {...provided.droppableProps}>
+                {sections.map((section, index) => (
+                  <Draggable
+                    key={section.name}
+                    draggableId={section.name}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <React.Fragment>
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                        >
+                          <p
+                            className="text-sm text-gray-400 cursor-move"
+                            {...provided.dragHandleProps}
+                          >
+                            {section.name}
+                          </p>
+                          <div className="border-1 overflow-hidden border-dashed rounded-xl">
+                            {section.code}
+                          </div>
+                        </div>
+                        {index !== sections.length - 1 && (
+                          <p className="mx-auto text-white bg-[#c6c6c6] w-fit mt-2 p-1 rounded-lg cursor-pointer">
+                            <img src="/plus.svg" alt="" />
+                          </p>
+                        )}
+                      </React.Fragment>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
               </div>
-            </div>
-            {index !== section_list.length - 1 && (
-              <p className="mx-auto text-white bg-[#c6c6c6] w-fit mt-2 p-1 rounded-lg cursor-pointer">
-                <img src="/plus.svg" alt="" />
-              </p>
             )}
-          </React.Fragment>
-        ))}
+          </Droppable>
+        </DragDropContext>
       </div>
     </div>
   );

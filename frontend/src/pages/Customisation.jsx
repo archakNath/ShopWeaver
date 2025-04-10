@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../components/sidebar';
 import Preview from '../components/preview';
+import Navbar from '../components/navbar'
 
 function Customisation() {
   const options = [
@@ -15,10 +16,13 @@ function Customisation() {
   };
 
   return(
+    <>
+    <Navbar/>
     <div className="flex">
     <Sidebar/>
     <Preview/>
     </div>
+    </>
   );
 }
 

@@ -8,80 +8,25 @@ import {
     ChevronLeft,
 } from "lucide-react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useStore } from "../store";
+
 
 export default function Sidebar() {
-    const [headerOpen, setHeaderOpen] = useState(false);
-    const [openSubHeader, setOpenSubHeader] = useState(null);
-    const [subHeaderOpen, setSubHeaderOpen] = useState(true);
-
-    const [sections, setSections] = useState([
-        { id: "header", icon: LayoutDashboard, label: "Header" },
-        { id: "hero", icon: TextCursorInput, label: "Hero Section" },
-        { id: "1", icon: UnfoldVertical, label: "Section 1" },
-        { id: "2", icon: UnfoldVertical, label: "Section 2" },
-        { id: "3", icon: UnfoldVertical, label: "Section 3" },
-        { id: "4", icon: UnfoldVertical, label: "Section 4" },
-        { id: "5", icon: UnfoldVertical, label: "Section 5" },
-    ]);
-
-    const headerSubOptions = [
-        { id: "header-sub1", icon: UnfoldVertical,label: "Header: Sub Section 1" },
-        { id: "header-sub2", icon: UnfoldVertical,label: "Header: Sub Section 2" },
-        { id: "header-sub3", icon: UnfoldVertical,label: "Header: Sub Section 3" },
-    ];
-
-    const heroSubOptions = [
-        { id: "hero-sub1", icon: UnfoldVertical,label: "Hero Section: Sub Section 1" },
-        { id: "hero-sub2", icon: UnfoldVertical,label: "Hero Section: Sub Section 2" },
-        { id: "hero-sub3", icon: UnfoldVertical,label: "Hero Section: Sub Section 3" },
-    ];
-
-    const section1SubOptions = [
-        { id: "1-sub1", icon: UnfoldVertical,label: "Section 1: Sub Section 1" },
-        { id: "1-sub2", icon: UnfoldVertical,label: "Section 1: Sub Section 2" },
-        { id: "1-sub3", label: "Section 1: Sub Section 3" },
-    ];
-
-    const section2SubOptions = [
-        { id: "2-sub1", icon: UnfoldVertical,label: "Section 2: Sub Section 1" },
-        { id: "2-sub2", icon: UnfoldVertical,label: "Section 2: Sub Section 2" },
-        { id: "2-sub3", icon: UnfoldVertical,label: "Section 2: Sub Section 3" },
-    ];
-
-    const section3SubOptions = [
-        { id: "3-sub1", icon: UnfoldVertical,label: "Section 3: Sub Section 1" },
-        { id: "3-sub2", icon: UnfoldVertical,label: "Section 3: Sub Section 2" },
-        { id: "3-sub3", icon: UnfoldVertical,label: "Section 3: Sub Section 3" },
-    ];
-
-    const section4SubOptions = [
-        { id: "4-sub1", icon: UnfoldVertical,label: "Section 4: Sub Section 1" },
-        { id: "4-sub2", icon: UnfoldVertical,label: "Section 4: Sub Section 2" },
-        { id: "4-sub3", icon: UnfoldVertical,label: "Section 4: Sub Section 3" },
-    ];
-
-    const section5SubOptions = [
-        { id: "5-sub1", icon: UnfoldVertical,label: "Section 5: Sub Section 1" },
-        { id: "5-sub2", icon: UnfoldVertical,label: "Section 5: Sub Section 2" },
-        { id: "5-sub3", icon: UnfoldVertical,label: "Section 5: Sub Section 3" },
-    ];
-
-    const subOptionsMap = {
-        header: headerSubOptions,
-        hero: heroSubOptions,
-        "1": section1SubOptions,
-        "2": section2SubOptions,
-        "3": section3SubOptions,
-        "4": section4SubOptions,
-        "5": section5SubOptions,
-    };
-
-    const [subOptions, setSubOptions] = useState([]);
+    const {
+        headerOpen,
+        setHeaderOpen,
+        openSubHeader,
+        setOpenSubHeader,
+        subHeaderOpen,
+        setSubHeaderOpen,
+        sections,
+        subOptions,
+        reorderSections,
+        reorderSubOptions,
+    } = useStore();
 
     const handleItemClick = (sectionId) => {
         setOpenSubHeader(sectionId);
-        setSubHeaderOpen(true);
-        setSubOptions(subOptionsMap[sectionId] || []);
     };
 
     const handleBackClick = () => {
@@ -91,14 +36,10 @@ export default function Sidebar() {
     const onDragEnd = (result) => {
         if (!result.destination) return;
 
-        const list = openSubHeader ? [...subOptions] : [...sections];
-        const [reorderedItem] = list.splice(result.source.index, 1);
-        list.splice(result.destination.index, 0, reorderedItem);
-
         if (openSubHeader) {
-            setSubOptions(list);
+            reorderSubOptions(result.source.index, result.destination.index);
         } else {
-            setSections(list);
+            reorderSections(result.source.index, result.destination.index);
         }
     };
 

@@ -16,9 +16,9 @@ export default function LandingPage() {
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   const testimonials = [
-    "“Finally, a design that doesn’t yell at me. Love the silence in the layout.”",
-    "“Black and white done right. This page feels like art.”",
-    "“Simplicity like this is surprisingly rare.”",
+    "“Planning for a website for your needs?????”",
+    "“Then You are on the right place....”",
+    "“Introducing Shopweaver where you can met your needs...”",
   ];
 
   useEffect(() => {
@@ -30,16 +30,16 @@ export default function LandingPage() {
 
   const features = [
     {
-      title: "Elegant Simplicity",
-      desc: "Nothing extra—just what you need.",
+      title: "Develop",
+      desc: "Develop your desired website.",
     },
     {
-      title: "Clean Layout",
-      desc: "Whitespace-focused design that breathes.",
+      title: "Templates",
+      desc: "Choose your theme from various available templates",
     },
     {
-      title: "Full Focus",
-      desc: "Your message, with zero distraction.",
+      title: "Hastle free",
+      desc: "Build your website, with zero hastle.",
     },
   ];
 
@@ -82,11 +82,11 @@ export default function LandingPage() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-5xl font-extrabold mb-4 relative inline-block">
-            <span className="relative z-10">Monochrome Mastery</span>
+            <span className="relative z-10">SHOPWEAVER</span>
             <span className="absolute left-0 bottom-1 w-full h-2 bg-black opacity-10 rounded-lg z-0"></span>
           </h1>
           <p className="text-xl max-w-2xl text-gray-700 mb-8 mx-auto">
-            Dive into a world of minimalism, clarity, and design purity. Built with black and white brilliance.
+            Dive into a world of creating your own website.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -151,7 +151,7 @@ export default function LandingPage() {
         variants={fadeInUp}
       >
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-10">What People Say</h2>
+          <h2 className="text-2xl font-bold mb-10">What exactly is SHOPWEAVER???</h2>
           <div className="relative h-24 mb-8">
             <AnimatePresence mode="wait">
               <motion.p
@@ -188,7 +188,7 @@ export default function LandingPage() {
       >
         <h2 className="text-3xl font-bold mb-12">Meet the Team</h2>
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto">
-          {["Alice", "Bob", "Charlie", "Diana"].map((name, i) => (
+          {["Archak Nath", "Srijit Pal", "Sanjib Sen", "Sarthak Chakraborty"].map((name, i) => (
             <motion.div
               key={name}
               className="bg-gray-50 rounded-xl shadow p-6 hover:scale-105 transition"
@@ -198,7 +198,7 @@ export default function LandingPage() {
             >
               <div className="w-24 h-24 mx-auto bg-gray-300 rounded-full mb-4" />
               <h3 className="text-lg font-semibold">{name}</h3>
-              <p className="text-gray-600 text-sm">Frontend Developer</p>
+              <p className="text-gray-600 text-sm">Developer</p>
             </motion.div>
           ))}
         </div>
@@ -236,7 +236,7 @@ export default function LandingPage() {
       >
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">Let’s Keep It Simple</h2>
         <p className="text-lg mb-6 text-gray-600 max-w-xl mx-auto">
-          Sign up and embrace the elegance of monochrome web design.
+          Sign up and embrace the thrill of creating your own website.
         </p>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -249,7 +249,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="py-10 px-6 text-center text-gray-500 bg-white">
-        <p>© 2025 Monochrome Inc. All rights reserved.</p>
+        <p>© 2025 SHOPWEAVER Inc. All rights reserved by developers.</p>
       </footer>
     </div>
   );

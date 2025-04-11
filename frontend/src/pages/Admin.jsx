@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { databases } from "../appwrite/config";
+import Navbar from "../components/navbar";
+import HomeSidebar from "../components/HomeSidebar";
+import HomeSection from "../Sections/HomeSection";
+// import HomeSection from "../Sections/Home";
 
 const Home = () => {
   const [customisation, setCustomisation] = useState([]);
@@ -27,14 +31,21 @@ const Home = () => {
   console.log(import.meta.env.VITE_PROJECT_ID);
   return (
     <div>
-      
-      <h2>Customisation List</h2>
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      {!loading &&
-        customisation.map((custom) => (
-          <div key={custom.$id}>{custom.body}</div>
-        ))}
+      <Navbar />
+      <div className="flex">
+        <HomeSidebar />
+        {/* <div>
+          <h2>Customisation List</h2>
+          {loading && <p>Loading...</p>}
+          {error && <p>{error}</p>}
+          {!loading &&
+            customisation.map((custom) => (
+              <div key={custom.$id}>{custom.body}</div>
+            ))}
+        </div> */}
+        {/* <HomeSection/> */}
+        <HomeSection/>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { databases } from "../appwrite/config";
 import Navbar from "../components/navbar";
 import HomeSidebar from "../components/HomeSidebar";
 import HomeSection from "../Sections/HomeSection";
+import ThemesSection from "../Sections/ThemesSection";
 // import HomeSection from "../Sections/Home";
 
 const Home = () => {
@@ -30,7 +31,7 @@ const Home = () => {
   };
   console.log(import.meta.env.VITE_PROJECT_ID);
   return (
-    <div>
+    <div className="bg-gray-100">
       <Navbar />
       <div className="flex">
         <HomeSidebar />
@@ -44,7 +45,7 @@ const Home = () => {
             ))}
         </div> */}
         {/* <HomeSection/> */}
-        <HomeSection/>
+        <ThemesSection/>
       </div>
     </div>
   );

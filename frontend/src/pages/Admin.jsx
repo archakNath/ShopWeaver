@@ -5,7 +5,7 @@ import HomeSidebar from "../components/HomeSidebar";
 import HomeSection from "../Sections/HomeSection";
 import ThemesSection from "../Sections/ThemesSection";
 // import HomeSection from "../Sections/Home";
-
+import AnalyticsSection from "../Sections/AnalyticsSection";
 const Home = () => {
   const [customisation, setCustomisation] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ const Home = () => {
             ))}
         </div> */}
         {/* <HomeSection/> */}
-        <ThemesSection/>
+        <AnalyticsSection/>
       </div>
     </div>
   );

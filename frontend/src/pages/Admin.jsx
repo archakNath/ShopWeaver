@@ -35,16 +35,6 @@ const Home = () => {
       <Navbar />
       <div className="flex">
         <HomeSidebar />
-        {/* <div>
-          <h2>Customisation List</h2>
-          {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-          {!loading &&
-            customisation.map((custom) => (
-              <div key={custom.$id}>{custom.body}</div>
-            ))}
-        </div> */}
-        {/* <HomeSection/> */}
         <AnalyticsSection/>
       </div>
     </div>

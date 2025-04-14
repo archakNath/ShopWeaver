@@ -70,7 +70,7 @@ export default function Sidebar() {
                             className="flex items-center cursor-pointer hover:text-gray-300"
                             onClick={() => setHeaderOpen(!headerOpen)}
                         >
-                            <h1 className="text-xl font-bold">ShopWeaver</h1>
+                            <h1 className="text-2xl font-bold text-center py-6 border-b border-gray-700">ShopWeaver</h1>
                             <ChevronDown
                                 size={20}
                                 className={`ml-2 transition-transform duration-300 ${headerOpen ? "rotate-180" : "rotate-0"}`}

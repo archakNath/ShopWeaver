@@ -103,4 +103,32 @@ export const useStore = create((set) => ({
       updated.splice(to, 0, moved);
       return { subOptions: updated };
     }),
+    addSection: () =>
+    set((state) => {
+      const numericSections = state.sections.filter(
+        (section) => section.id !== "header" && section.id !== "hero"
+      );
+      const nextId = (numericSections.length + 1).toString();
+  
+      return {
+        sections: [
+          ...state.sections,
+          {
+            id: nextId,
+            icon: UnfoldVertical,
+            label: `Section ${nextId}`,
+            subsections: [],
+          },
+        ],
+      };
+    }),
+
+  addSubsection: (index) =>
+    set((state) => {
+      const updatedSections = [...state.sections];
+      const section = updatedSections[index];
+      const newSubId = section.subsections.length + 1;
+      section.subsections.push(`Sub Section ${newSubId}`);
+      return { sections: updatedSections };
+    }),
 }));

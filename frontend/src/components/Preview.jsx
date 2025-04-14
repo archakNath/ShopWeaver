@@ -7,17 +7,18 @@ import {
 import { useStore } from "../store";
 
 function Preview() {
-  const { sections, reorderSections } = useStore();
+  const { sections, reorderSections, addSection, addSubsection } = useStore();
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
     reorderSections(result.source.index, result.destination.index);
   };
 
-  const renderSectionCode = (id) => {
+  const renderSectionCode = (id, subsections, index) => {
+    let content;
     switch (id) {
       case "header":
-        return (
+        content = (
           <header className="flex w-full justify-between items-center p-3">
             <h1 className="font-bold">Admin</h1>
             <nav className="flex gap-5">
@@ -30,8 +31,9 @@ function Preview() {
             </nav>
           </header>
         );
+        break;
       case "hero":
-        return (
+        content = (
           <main
             style={{
               backgroundImage: `url(https://i.pinimg.com/736x/0a/d5/16/0ad516d7ee2277fab0a7c37aecab1cb8.jpg)`,
@@ -57,15 +59,32 @@ function Preview() {
             </div>
           </main>
         );
+        break;
       default:
-        return <div className="p-4">Default content for section {id}</div>;
+        content = <div className="p-4">Default content for section {id}</div>;
     }
+
+    return (
+      <div className="space-y-3">
+        {content}
+        <div className="ml-4 mt-2">
+          {subsections.map((sub, i) => (
+            <div
+              key={i}
+              className="border mt-1 p-2 rounded bg-gray-100 text-sm"
+            >
+              Subsection: {sub}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   return (
     <div className="p-5 w-full bg-stone-100 max-[400px]:w-full">
       <h2 className="text-2xl font-bold mb-3">Preview</h2>
-      <div id="sections-preview" className="w-full bg-white rounded-xl p-2">
+      <div id="sections-preview" className="w-full bg-white rounded-xl p-3">
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId="sections">
             {(provided) => (
@@ -77,27 +96,30 @@ function Preview() {
                     index={index}
                   >
                     {(provided) => (
-                      <React.Fragment>
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        className="mb-2"
+                      >
+                        <p
+                          className="text-sm text-gray-400 cursor-move"
+                          {...provided.dragHandleProps}
                         >
-                          <p
-                            className="text-sm text-gray-400 cursor-move"
-                            {...provided.dragHandleProps}
-                          >
-                            {section.label}
-                          </p>
-                          <div className="border-1 overflow-hidden border-dashed rounded-xl">
-                            {renderSectionCode(section.id)}
-                          </div>
+                          {section.label}
+                        </p>
+                        <div className="border-1 overflow-hidden border-dashed rounded-xl">
+                          {renderSectionCode(section.id, section.subsections || [], index)}
                         </div>
-                        {index !== sections.length - 1 && (
-                          <p className="mx-auto text-white bg-[#c6c6c6] w-fit mt-2 p-1 rounded-lg cursor-pointer">
-                            <img src="/plus.svg" alt="" />
-                          </p>
-                        )}
-                      </React.Fragment>
+                        {/* Add Subsection button placed outside the dotted box */}
+                        <div className="mt-3 text-center">
+                          <button
+                            onClick={() => addSubsection(index)}
+                            className="bg-gray-400 text-white py-1 px-3 rounded-sm hover:bg-black"
+                          >
+                            + Add Subsection
+                          </button>
+                        </div>
+                      </div>
                     )}
                   </Draggable>
                 ))}
@@ -106,6 +128,14 @@ function Preview() {
             )}
           </Droppable>
         </DragDropContext>
+        <div className="flex justify-end mt-5 p-3">
+          <button
+            onClick={addSection}
+            className="bg-black text-white py-2 px-4 rounded shadow-md"
+          >
+            + Add Section
+          </button>
+        </div>
       </div>
     </div>
   );

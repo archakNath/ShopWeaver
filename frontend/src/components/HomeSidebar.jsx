@@ -18,7 +18,7 @@ const HomeSidebar = () => {
   };
 
   return (
-    <div className="h-screen w-64 bg-black text-white flex flex-col shadow-lg">
+    <div className="bg-black text-white min-h-screen p-4 w-64 fixed top-0 left-0 z-10 transition-all duration-300 ease-in-out sm:relative">
       <h1 className="text-2xl font-bold text-center py-6 border-b border-gray-700">
         My Sidebar
       </h1>

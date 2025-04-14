@@ -99,7 +99,7 @@ export default function Sidebar() {
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
                                                         onClick={() => !openSubHeader && handleItemClick(item.id)}
-                                                        className={`flex items-center gap-3 cursor-pointer hover:text-gray-300 px-2 py-1 rounded ${snapshot.isDragging ? "bg-gray-700" : "bg-transparent"}`}
+                                                        className={`flex items-center gap-3 cursor-pointer hover:text-gray-300 px-2 py-2 rounded ${snapshot.isDragging ? "bg-gray-700" : "bg-transparent"}`}
                                                     >
                                                         {item.icon ? (
                                                             <item.icon size={20} />

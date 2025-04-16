@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Spline from '@splinetool/react-spline';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -56,7 +57,7 @@ export default function LandingPage() {
     <div className="bg-white text-black font-sans">
       {/* Header */}
       <motion.header
-        className="py-24 px-6 flex flex-col items-center text-center relative"
+        className="py-10 px-6 flex flex-col items-center text-center relative"
         initial="hidden"
         animate="show"
         variants={fadeInUp}
@@ -84,6 +85,7 @@ export default function LandingPage() {
         <p className="text-xl text-gray-700 mb-8 max-w-xl">
           Dive into a world of creating your own website.
         </p>
+
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -91,10 +93,15 @@ export default function LandingPage() {
         >
           Get Started
         </motion.button>
+
+        <div className="w-full h-[400px] sm:h-[500px] md:h-[600px] mt-8 mb-8">
+          <Spline scene="https://prod.spline.design/GJaNM6qfZURH52eh/scene.splinecode" />
+        </div>
+
       </motion.header>
 
       {/* Features */}
-      <section className="py-24 px-6">
+      <section className="py-10 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
             className="text-3xl font-bold mb-12"
